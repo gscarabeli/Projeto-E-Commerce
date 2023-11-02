@@ -1,0 +1,32 @@
+﻿@model List<CategoriaViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listagem de Categorias</h2>
+<a href="/categoria/create">Novo Registro</a>
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Descrição</th>
+    </tr>
+    @foreach (var categoria in Model)
+    {
+        <tr>
+            <td>
+                <a href="/categoria/Edit?id=@categoria.Id">Editar</a>
+                <a href="javascript:apagarCategoria(@categoria.Id)">Apagar</a>
+            </td>
+            <td>@categoria.Id</td>
+            <td>@categoria.Descricao</td>
+        </tr>
+    }
+</table>
+<script>
+    function apagarCategoria(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'categoria/Delete?id=' + id;
+    }
+</script>
